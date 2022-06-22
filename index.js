@@ -8,30 +8,31 @@ function buildQuiz() {
     
 
     for(letter in currentQuestion.options){
-      // ...add an HTML radio button
-        answers.push(
-          `<label>
-            <input type="radio" name="question${questionNumber}" value="${letter}">
-            ${letter} : 
-            ${currentQuestion.options[letter]}
-          </label>`
-          // ${currentQuestion.answers[letter]}
+        // ...add an HTML radio button
+          answers.push(
+            `<label>
+              <input type="radio" name="question${questionNumber}" value="${letter}">
+              ${letter} : 
+              ${currentQuestion.options[letter]}
+            </label>`
+            // ${currentQuestion.answers[letter]}
+          )
+        }
+
+        // add this question and its answers to the output
+        output.push(
+          `<div class="question"> ${currentQuestion.question} </div>
+           <div class="answers"> ${answers.join('')} </div>`
         )
-        
       }
-      // add this question and its answers to the output
-      output.push(
-        `<div class="question"> ${currentQuestion.question} </div>
-        <div class="answers"> ${answers.join('')} </div>`
     )
-    console.log(currentQuestion)
+
+    // console.log(output[0])
     quizContainer.innerHTML = output.join('');
+  }
 
-  })
-}
-
-function showResults() {
-}
+// function showResults() {
+// }
 
 const quizContainer = document.getElementById("quiz")
 const resultsContainer = document.getElementsByClassName("results")
@@ -67,9 +68,6 @@ const questionsArray = [
 ]
 
 buildQuiz()
-
+quizContainer.innerHTML = output
 
 submitButton.addEventListener('click', showResults)
-quizContainer.innerHTML = `
-<h3>Made it</h3>
-`
